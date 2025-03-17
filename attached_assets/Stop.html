@@ -1,0 +1,440 @@
+
+<script src="sha256.min.js">
+</script>
+<!-- <pre> -->
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>WerasGet</title>
+  <meta name="description" content="Что-то намутил" />
+  
+  <!-- <link rel="stylesheet" type="text/css" href="/assets/css/style.css" /> -->
+  <link rel="icon" href="/img/favicon.png">
+</head>
+<style>
+  *{
+    margin: 0;
+    font-family: Impact, "Helvetica Neue", Helvetica, sans-serif,Arial;
+  }
+  .input{
+    box-sizing: border-box;
+  /* width: 100%; */
+  height: 1.5rem;
+  font-family: "Fira Sans", sans-serif;
+  border-radius: 6px;
+  border: 1px solid #B5B5B5;
+  background: #FFF;
+  padding: 0 8px;
+  color: #1D314C;
+  text-shadow: 0px 0.5px 0px rgba(0, 0, 0, 0.25);
+  font-weight: 400;
+  /* text-transform: uppercase; */
+  }
+  textarea{
+    box-sizing: border-box;
+  /* width: 100%; */
+  /* height: 1.5rem; */
+  font-family: "Fira Sans", sans-serif;
+  border-radius: 5px;
+  border: 1px solid #B5B5B5;
+  background: #FFF;
+  padding: 0 8px;
+  color: #1D314C;
+  text-shadow: 0px 0.5px 0px rgba(0, 0, 0, 0.25);
+  /* font-weight: 200; */
+  font-size: 0.8rem;
+  /* text-transform: uppercase; */
+  }
+body{
+height: 100dvh;
+min-width: 100dvw;
+min-height: 100dvh;
+background: radial-gradient(circle, rgba(69,95,144,1) 34%, rgba(51,77,126,1) 60%);
+}
+.line{
+min-height: 1.8rem;
+background-color: black;
+}
+.container{
+max-height: 100dvh;
+display: flex;
+align-items: stretch;
+flex-direction: column;
+
+}
+.back{
+max-height: 2.1rem;
+padding: 0.5rem 0 0rem 0.6rem  ;
+}
+.header img{
+max-height: 100%;
+
+}
+.option{
+display: flex;
+justify-content: flex-end;
+max-height: 2.1rem;
+min-width: 60px;
+padding: 0.5rem 0.6rem 0.4rem 0.6rem  ;
+}
+.header{
+display: flex;
+justify-content: space-between;
+}
+.nav{
+display: flex;
+justify-content: center;
+gap: 1%; 
+margin-bottom:  0.6rem;
+}
+.tab{
+align-items: center;
+display: flex;
+min-width: 31%;
+min-height: 1.9rem; 
+border-radius: 7px;
+justify-content: center;
+background: #203655;
+font-size: 16px;
+font-size: 1rem;
+font-weight: 500;
+color: #37CDF7;
+box-shadow: 0 0 1px rgba(0,0,0,0.5);
+text-align: center;
+vertical-align: middle;
+border: none;
+padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+align-self:center;
+}
+.active{
+display: flex;
+min-width: 31%;
+min-height: 2rem; 
+background: linear-gradient(0deg, rgba(224,239,251,1) 18%, rgba(170,191,210,1) 69%);
+color: #235066;
+box-shadow: 0 0 1px rgba(0,0,0,0.5);
+}
+.main{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+  flex-direction: column;
+  overflow-y: scroll;
+  margin-bottom: 1.2rem;
+}
+/* / */
+
+
+.name{
+/* display: flex; */
+max-width: calc(100% - 24px);
+color: #214A5E;
+font-size: 1rem;
+font-weight: 50;
+/* text-shadow: 1px 1px 2px #8099BA; */
+overflow: hidden;
+align-self: center;
+margin-left: 1rem;
+}
+.save{
+display: flex;
+justify-content: center;
+color: aliceblue;
+min-height: 3.5rem;
+gap: 1rem; 
+}
+.save-btn{
+/* cursor: pointer; */
+display: flex;
+justify-content: center;
+background: #203655;
+font-size: 1rem;
+font-weight: 400;
+color: #37CDF7;
+text-align: center;
+vertical-align: middle;
+/* padding: 0.3rem 0.3rem 0.3rem 0.3rem; */
+align-self:center;
+/* border: 1px solid #2c2c2c;  */
+box-shadow: inset 0px -1px 1px 1px rgba(0, 0, 0, 0.8); 
+align-items: center
+}
+.yelow{
+min-width: 9rem;
+min-height: 3.3rem; 
+border-radius: 0.9rem;
+background: linear-gradient(0deg, #F7D15E 20%, #FAB332 80%); 
+color: #7F570C;
+}
+.blue{
+min-width: 9rem;
+min-height: 3.3rem; 
+border-radius: 0.9rem;
+background: linear-gradient(0deg, #4CB2EA 20%, #5083DC 80%); 
+color: #003886;
+outline: none !important
+}
+.btn-task{
+min-width: 5rem;
+min-height: 2rem; 
+border-radius: 0.6rem;
+
+
+}
+.taskButtons{
+align-self: center;
+justify-self: end;
+}
+.red{
+min-width: 5rem;
+min-height: 2rem; 
+border-radius: 0.6rem;
+background: linear-gradient(0deg, #de7c7c 20%, #ec3939 80%); 
+color: #003886;
+}
+.blue-edit{
+min-width: 5rem;
+min-height: 2rem; 
+border-radius: 0.6rem;
+background: linear-gradient(0deg, #4CB2EA 20%, #5083DC 80%); 
+color: #003886;
+}
+.footer{
+ display: flex;
+justify-content: center;
+align-items: flex-end; 
+min-height: 1rem;
+/* background-color: bisque; */
+}
+
+
+
+/* *:focus {
+  outline: 0;
+  outline-style:none;
+  outline-width:0;
+}  */
+#dialog {
+/* min-width: 90dvw; */
+display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  /* position: relative; */
+  margin: auto;
+  /* margin-left: 0.4rem;  */
+  border-radius: 1rem;
+  background: linear-gradient(180deg, #548ADB 20%, #8aa2ca 80%);
+  /* height: 400px; */
+  padding: 0;
+  align-content: center;
+  padding: 0.4rem 0.7rem 0.1rem 0.7rem;
+
+}
+.dialogContainer{
+display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+.dialog-body{
+/* margin: 0.3rem 0.4rem 0.3rem 0.3rem;  */
+margin: 0.3rem 0rem 0.3rem 0rem;
+/* min-width: calc(100dvw - 1.7rem); */
+min-width: calc(100dvw - 3.4rem);
+min-height: 23rem;
+border-radius: 0.5rem;
+background-color: #DEEAF6;
+}
+.dialog-body{
+display: flex;
+  justify-content: flex-start;
+  max-height: 21px;
+   gap: 0.4rem;
+  /* border: 1px solid rgb(125, 122, 122); */
+  border-radius: 10px;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+}
+.idTask{
+display: none;
+}
+</style>
+<body>
+  <div class="container">
+    <!-- <div class="line"></div> -->
+  <div class="header">
+    <!-- <div class="back" >
+      <a href="logout.php"><img src="back.png" alt="<" ></a>
+    </div> -->
+    <!-- <div class="option">
+      <img src="option.png" alt="O">
+    </div> -->
+  </div>
+        <!-- <div class="nav">
+          <button class="tab">active in v.2.0</button>
+          <button class="tab active">Tasks</button>
+          <button class="tab">active in v.2.0</button>
+        </div> -->
+        <div id = "main" class="main">
+        </div>
+        <!-- <div class="save">
+          <button id="modal" class="save-btn yelow">Add Task</button>
+        </div> -->
+        <div class="footer"></div>
+  </div> 
+  
+<dialog id="dialog">
+<div class="dialogContainer">
+<!-- <div class="close-dialog" onclick = "closeDialog();"><img src="close.png" alt="close"></div> -->
+<div class="dialog-body">
+  <p>
+    <p><label for="id">ID: </label> <input class ="inputGet input" id = "id" name="id" type="text"></p>
+    <p><label for="name">Name: </label> <input class ="inputGet input" id = "name" name="name" type="text"></p>
+  </p>
+    <!-- <p><button class ="blue" id = "button" onclick="get()">Get</button></p> -->
+    
+    <div id = "result">
+    </br>
+      <label id = "server1" for="">Server: </label><label id = "server" for=""></label>
+    </br>
+      <label id = "level1" for="">Level: </label><label id = "level" for=""></label>
+    </br>
+      <label id = "power_now1" for="">Power now: </label><label id = "power_now" for=""></label>
+    </br>
+      <label id = "power_max1" for="">Power Max: </label><label id = "power_max" for=""></label>
+    </br>
+      <label id = "poten1" for="">Hidden power: </label><label id = "poten" for=""></label>
+    </br>
+    </div>
+
+
+
+
+<!-- <form id="FormDialog" onsubmit="sub(target);"><p></p> -->
+    <p>
+       <button class ="blue" onclick="get()">Get info</button>
+    </p>
+ <hr/>
+</div>
+</div>
+</dialog>
+      </body>
+
+  
+</html>
+
+<script>
+function toPHP(data) {
+  let request = new XMLHttpRequest();
+    const url = "SQD.php";
+    const params = JSON.stringify({data});
+    request.open('POST', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.addEventListener("readystatechange",  function(){ 
+       if(request.readyState === 4 && request.status === 200) {  
+       // console.log('OK');     
+           //document.getElementById("LineS").innerHTML = request.responseText;
+        }
+    }); 
+    request.send(params);
+  }
+
+  function toBinaryStr(str) {
+  const encoder = new TextEncoder();
+  const charCodes = encoder.encode(str);
+  return String.fromCharCode(...charCodes);
+}
+function hmacSHA256(message, key){
+  hash = sha256.hmac(key, message);
+  return hash;
+}
+
+function get() {
+  const userId = document.getElementById('id').value;
+  const nickname = document.getElementById('name').value;
+  //console.log(nickname+'('+userId+')');
+      const secret = '20f7b2cf273b085bd1fc0e2463dba668'
+      const params = {
+        character_id: userId,
+        nickname: nickname
+      }
+const paramsStr = JSON.stringify(params)
+const paramsBase64 = btoa(toBinaryStr(paramsStr))
+const sign = hmacSHA256(paramsStr, secret).toString()
+const promise = this.gameId === 'G301_MD' || this.gameId === 'G301'
+getToken(paramsBase64, sign)
+}
+
+function getToken (paramsBase64, sign) {
+var params = new FormData();
+const addr = 'https://5c7021242c10k1d2.tap4hub.com:10443'
+const url = addr + '/tgs/gateway2/character/litetoken?client_id=k1d2:oap.1.0.0'
+const encoded_payload = paramsBase64;
+params.append("encoded_payload", encoded_payload);
+params.append("sign", sign);
+var request = new XMLHttpRequest();
+request.responseType =	"json";
+request.open("POST", url);
+request.addEventListener("readystatechange",  function(){ 
+         if(request.readyState === 4 && request.status === 200) {    
+           
+           
+          // console.log(request.response.lite_token);
+          GetInfo(request.response.lite_token);
+           
+            //MathRequest(request.response)
+           // toPHP(request.response)
+          }
+      }); 
+      request.send(params);
+}
+function GetInfo (token) {
+var params = new FormData();
+const addr = 'https://5c7021242c10k1d2.tap4hub.com:10443'
+const url = addr + '/tgs/gateway2/oap/character/info?lite_token=' + encodeURIComponent(token) +'&client_id=k1d2:oap.1.0.0'
+//const encoded_payload = paramsBase64;
+//params.append("encoded_payload", encoded_payload);
+//params.append("sign", sign);
+var request = new XMLHttpRequest();
+request.responseType =	"json";
+request.open("GET", url);
+request.addEventListener("readystatechange",  function(){ 
+         if(request.readyState === 4 && request.status === 200) {    
+           
+           
+           //console.log(request.response);
+           
+            MathRequest(request.response)
+           // toPHP(request.response)
+          }
+      }); 
+      request.send(params);
+}
+function number_format(number, decimals = 0, decPoint = '.', thousandsSep = '.') {
+    number = parseFloat(number).toFixed(decimals);
+
+    let parts = number.split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousandsSep);
+
+    return parts.join(decPoint);
+}
+
+function MathRequest(req) {
+  let meta = JSON.parse(req.meta_info);
+  let server = req.server_id
+  let power = meta.power
+  let Maxpower = meta.maxPower
+  let level = meta.cityLvl
+  let hiden = number_format(meta.maxPower-meta.power)
+  toPHP(req)
+  document.getElementById("server").innerHTML = server
+  document.getElementById("level").innerHTML = level
+  document.getElementById("power_now").innerHTML = number_format(power)
+  document.getElementById("power_max").innerHTML = number_format(Maxpower)
+  document.getElementById("poten").innerHTML = hiden
+}
+console.log('dddddd')
+</script>
